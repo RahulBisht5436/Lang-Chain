@@ -5,7 +5,7 @@ load_dotenv()
 
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",
-    temperature=0
+    temperature=.5
 )
 
 def generateResponse(question):
