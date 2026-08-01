@@ -1,5 +1,8 @@
 from dotenv import load_dotenv
+from groq_llm import generateResponse
+from ollama_llm import chatWithOllama
+
 import os
 load_dotenv()
-model = os.getenv("TEST_CREDENTIALS")
- 
+# print(chatWithOllama("What is meaning of love"))
+# print(generateResponse("What is right way to love"))

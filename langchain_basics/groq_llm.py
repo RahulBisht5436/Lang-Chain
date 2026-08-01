@@ -8,6 +8,9 @@ llm = ChatGroq(
     temperature=0
 )
 
-response = llm.invoke("What is LangChain?")
+def generateResponse(question):
+    pass
+    response = llm.invoke(question)
+    return response
 
-print(response.content)
+
