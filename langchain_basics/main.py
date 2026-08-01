@@ -5,4 +5,4 @@ load_dotenv()
 
 model = os.getenv("TEST_CREDENTIALS")
  dasdasd
-print(model)
+print(model)sds
