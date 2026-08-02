@@ -4,7 +4,7 @@ from langchain_ollama import ChatOllama
 load_dotenv()
 
 llm = ChatOllama(
-    model="gemma4:12b",
+    model="llama3.2",
     temperature=0
 )
 
