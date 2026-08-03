@@ -3,19 +3,15 @@
 # ==========================================================
 
 # Embedding model that converts text into vectors.
-# We created this object in ollamaEmbedding.py
 from llm.ollamaEmbedding import embeddings
 
-# TextLoader is responsible for reading text files
-# and converting them into LangChain Document objects.
+# Reads text files and converts them into LangChain Documents.
 from langchain_community.document_loaders import TextLoader
 
-# RecursiveCharacterTextSplitter breaks large documents
-# into smaller chunks so that embeddings can be generated
-# efficiently.
+# Splits large documents into smaller chunks.
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# Chroma is the Vector Database used to store embeddings.
+# Chroma Vector Database
 from langchain_chroma import Chroma
 
 # Used for creating platform-independent file paths.
@@ -27,23 +23,19 @@ from pathlib import Path
 # ==========================================================
 
 # __file__ refers to the current Python file.
-# .parent gives the directory in which this file exists.
+# .parent returns the directory containing this file.
 current_dir = Path(__file__).parent
 
-# Create the full path of the text file.
+# Build the path to joblisting.txt
 file_path = current_dir / "data" / "joblisting.txt"
 
 
 # ==========================================================
-# STEP 2 : Load the document
+# STEP 2 : Load the Document
 # ==========================================================
 
-# TextLoader reads the text file and converts it into
+# TextLoader converts the text file into a list of
 # LangChain Document objects.
-#
-# A Document contains:
-#   1. page_content -> Actual text
-#   2. metadata     -> Extra information
 documents = TextLoader(str(file_path)).load()
 
 print("=" * 80)
@@ -60,14 +52,11 @@ print()
 # STEP 3 : Create the Text Splitter
 # ==========================================================
 
-# Large documents are difficult for embedding models.
-# Therefore we split them into smaller chunks.
+# Large documents are split into smaller chunks so that
+# embeddings can be generated efficiently.
 #
 # chunk_size    -> Maximum characters per chunk.
-# chunk_overlap -> Number of characters shared between
-#                  consecutive chunks.
-#
-# Overlap helps preserve context.
+# chunk_overlap -> Shared characters between chunks.
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=200,
     chunk_overlap=20
@@ -75,7 +64,7 @@ text_splitter = RecursiveCharacterTextSplitter(
 
 
 # ==========================================================
-# STEP 4 : Split the document into chunks
+# STEP 4 : Split the Documents
 # ==========================================================
 
 chunks = text_splitter.split_documents(documents)
@@ -94,13 +83,13 @@ print()
 
 
 # ==========================================================
-# STEP 5 : Store the chunks inside Chroma Vector Database
+# STEP 5 : Create the Vector Database
 # ==========================================================
 
-# Chroma.from_documents() performs two operations:
+# Chroma performs two operations:
 #
-# 1. Converts every chunk into an embedding vector.
-# 2. Stores the vectors inside the vector database.
+# 1. Generate embeddings for every chunk.
+# 2. Store those embeddings in the vector database.
 db = Chroma.from_documents(
     documents=chunks,
     embedding=embeddings
@@ -113,73 +102,68 @@ print()
 
 
 # ==========================================================
-# STEP 6 : Take the user's search query
+# STEP 6 : Create a Retriever
+# ==========================================================
+
+# A Retriever is a wrapper around the Vector Store.
+#
+# Instead of manually:
+#
+# Query
+#   ↓
+# Generate Embedding
+#   ↓
+# Search Vector Database
+#   ↓
+# Return Documents
+#
+# the Retriever performs all these steps internally.
+retriever = db.as_retriever()
+
+
+# ==========================================================
+# STEP 7 : Take User Input
 # ==========================================================
 
 query = input("What are you searching for? : ")
 
 
 # ==========================================================
-# STEP 7 : Convert the query into an embedding
+# STEP 8 : Retrieve Similar Documents
 # ==========================================================
 
-# Every query must also be converted into a vector.
+# invoke() automatically:
 #
-# Since the documents and query use the same embedding model,
-# they both exist in the same vector space.
-embedding_vector = embeddings.embed_query(query)
+# 1. Converts the query into an embedding.
+# 2. Searches the vector database.
+# 3. Returns the most similar Document objects.
+results = retriever.invoke(query)
 
-print("\nEmbedding Vector Generated Successfully.")
-print(f"Vector Dimension : {len(embedding_vector)}")
-print()
-
-
-# ==========================================================
-# STEP 8 : Perform Similarity Search
-# ==========================================================
-
-# similarity_search_by_vector()
-#
-# Compares the query vector against every stored document
-# vector and returns the most similar chunks.
-results = db.similarity_search_by_vector(
-    embedding_vector,
-    k=4
-)
+print(f"\nRetriever returned {len(results)} matching documents.\n")
 
 
 # ==========================================================
-# STEP 9 : Display the Search Results
+# STEP 9 : Display Search Results
 # ==========================================================
 
-print("\n")
 print("=" * 80)
 print("SEARCH RESULTS")
 print("=" * 80)
-
-# similarity_search_by_vector() returns a list of
-# LangChain Document objects.
-#
-# Every Document contains:
-#
-# document.id
-# document.metadata
-# document.page_content
 
 for index, document in enumerate(results, start=1):
 
     print(f"\nResult {index}")
     print("-" * 80)
 
-    # Unique ID generated by Chroma.
+    # Unique identifier assigned by Chroma
     print("Document ID:")
     print(document.id)
 
-    # Metadata contains additional information.
+    # Metadata such as source file
     print("\nMetadata:")
     print(document.metadata)
 
-    # The actual retrieved text.
+    # Actual retrieved text
     print("\nPage Content:")
     print(document.page_content)
 
