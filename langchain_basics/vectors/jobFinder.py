@@ -1,0 +1,191 @@
+# ==========================================================
+# Import Required Libraries
+# ==========================================================
+
+# Embedding model that converts text into vectors.
+# We created this object in ollamaEmbedding.py
+from llm.ollamaEmbedding import embeddings
+
+# TextLoader is responsible for reading text files
+# and converting them into LangChain Document objects.
+from langchain_community.document_loaders import TextLoader
+
+# RecursiveCharacterTextSplitter breaks large documents
+# into smaller chunks so that embeddings can be generated
+# efficiently.
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+
+# Chroma is the Vector Database used to store embeddings.
+from langchain_chroma import Chroma
+
+# Used for creating platform-independent file paths.
+from pathlib import Path
+
+
+# ==========================================================
+# STEP 1 : Locate the text file
+# ==========================================================
+
+# __file__ refers to the current Python file.
+# .parent gives the directory in which this file exists.
+current_dir = Path(__file__).parent
+
+# Create the full path of the text file.
+file_path = current_dir / "data" / "joblisting.txt"
+
+
+# ==========================================================
+# STEP 2 : Load the document
+# ==========================================================
+
+# TextLoader reads the text file and converts it into
+# LangChain Document objects.
+#
+# A Document contains:
+#   1. page_content -> Actual text
+#   2. metadata     -> Extra information
+documents = TextLoader(str(file_path)).load()
+
+print("=" * 80)
+print("DOCUMENT LOADED")
+print("=" * 80)
+
+for document in documents:
+    print(document)
+
+print()
+
+
+# ==========================================================
+# STEP 3 : Create the Text Splitter
+# ==========================================================
+
+# Large documents are difficult for embedding models.
+# Therefore we split them into smaller chunks.
+#
+# chunk_size    -> Maximum characters per chunk.
+# chunk_overlap -> Number of characters shared between
+#                  consecutive chunks.
+#
+# Overlap helps preserve context.
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=200,
+    chunk_overlap=20
+)
+
+
+# ==========================================================
+# STEP 4 : Split the document into chunks
+# ==========================================================
+
+chunks = text_splitter.split_documents(documents)
+
+print("=" * 80)
+print(f"TOTAL CHUNKS CREATED : {len(chunks)}")
+print("=" * 80)
+
+for index, chunk in enumerate(chunks, start=1):
+
+    print(f"\nChunk {index}")
+    print("-" * 60)
+    print(chunk.page_content)
+
+print()
+
+
+# ==========================================================
+# STEP 5 : Store the chunks inside Chroma Vector Database
+# ==========================================================
+
+# Chroma.from_documents() performs two operations:
+#
+# 1. Converts every chunk into an embedding vector.
+# 2. Stores the vectors inside the vector database.
+db = Chroma.from_documents(
+    documents=chunks,
+    embedding=embeddings
+)
+
+print("=" * 80)
+print("VECTOR DATABASE CREATED SUCCESSFULLY")
+print("=" * 80)
+print()
+
+
+# ==========================================================
+# STEP 6 : Take the user's search query
+# ==========================================================
+
+query = input("What are you searching for? : ")
+
+
+# ==========================================================
+# STEP 7 : Convert the query into an embedding
+# ==========================================================
+
+# Every query must also be converted into a vector.
+#
+# Since the documents and query use the same embedding model,
+# they both exist in the same vector space.
+embedding_vector = embeddings.embed_query(query)
+
+print("\nEmbedding Vector Generated Successfully.")
+print(f"Vector Dimension : {len(embedding_vector)}")
+print()
+
+
+# ==========================================================
+# STEP 8 : Perform Similarity Search
+# ==========================================================
+
+# similarity_search_by_vector()
+#
+# Compares the query vector against every stored document
+# vector and returns the most similar chunks.
+results = db.similarity_search_by_vector(
+    embedding_vector,
+    k=4
+)
+
+
+# ==========================================================
+# STEP 9 : Display the Search Results
+# ==========================================================
+
+print("\n")
+print("=" * 80)
+print("SEARCH RESULTS")
+print("=" * 80)
+
+# similarity_search_by_vector() returns a list of
+# LangChain Document objects.
+#
+# Every Document contains:
+#
+# document.id
+# document.metadata
+# document.page_content
+
+for index, document in enumerate(results, start=1):
+
+    print(f"\nResult {index}")
+    print("-" * 80)
+
+    # Unique ID generated by Chroma.
+    print("Document ID:")
+    print(document.id)
+
+    # Metadata contains additional information.
+    print("\nMetadata:")
+    print(document.metadata)
+
+    # The actual retrieved text.
+    print("\nPage Content:")
+    print(document.page_content)
+
+    print("-" * 80)
+
+
+# ==========================================================
+# END OF PROGRAM
+# ==========================================================

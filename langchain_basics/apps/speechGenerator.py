@@ -1,9 +1,13 @@
-from math import factorial
-from ollama_llm import llm
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from llm.ollama_llm import llm
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 import streamlit as st
-from langchain_core.runnables import RunnableLambda , RunnablePassthrough
+from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 
 seachPrompt = PromptTemplate(
     template="""

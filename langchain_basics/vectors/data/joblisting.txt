@@ -1,0 +1,161 @@
+
+================================================================================
+Job ID: JOB-001
+================================================================================
+
+Company: Google
+Location: Bangalore, India
+Role: Software Engineer - Backend
+Experience: 2-4 Years
+Employment Type: Full Time
+Salary: ₹22 LPA - ₹35 LPA
+
+Job Description:
+Google is looking for a Backend Software Engineer to build scalable distributed
+systems used by billions of users. The engineer will design APIs, optimize
+database queries, build microservices, and improve backend reliability.
+
+Responsibilities:
+- Design scalable REST APIs
+- Build microservices using Java or Go
+- Work with distributed systems
+- Optimize SQL queries
+- Improve system performance
+- Participate in code reviews
+
+Required Skills:
+- Java
+- Spring Boot
+- REST APIs
+- SQL
+- MySQL
+- Kubernetes
+- Docker
+- Git
+
+Preferred Skills:
+- Kafka
+- Redis
+- GCP
+- System Design
+
+--------------------------------------------------------------------------------
+
+================================================================================
+Job ID: JOB-002
+================================================================================
+
+Company: Microsoft
+Location: Hyderabad, India
+Role: Full Stack Developer
+Experience: 3-6 Years
+Employment Type: Full Time
+Salary: ₹18 LPA - ₹30 LPA
+
+Job Description:
+Develop modern web applications using React and Node.js. Build scalable APIs,
+work with MongoDB, and deploy applications on Azure.
+
+Required Skills:
+- JavaScript
+- TypeScript
+- React
+- Node.js
+- Express
+- MongoDB
+- HTML
+- CSS
+
+Preferred Skills:
+- Azure
+- Docker
+- CI/CD
+- Jest
+
+--------------------------------------------------------------------------------
+
+================================================================================
+Job ID: JOB-003
+================================================================================
+
+Company: Amazon
+Location: Chennai, India
+Role: DevOps Engineer
+Experience: 4-7 Years
+Employment Type: Full Time
+Salary: ₹20 LPA - ₹34 LPA
+
+Job Description:
+Manage AWS infrastructure, CI/CD pipelines, Kubernetes clusters, monitoring,
+and automation.
+
+Required Skills:
+- AWS
+- Docker
+- Kubernetes
+- Terraform
+- Jenkins
+- Linux
+
+Preferred Skills:
+- Python
+- CloudFormation
+- Prometheus
+- Grafana
+
+--------------------------------------------------------------------------------
+
+================================================================================
+Job ID: JOB-004
+================================================================================
+
+Company: Adobe
+Location: Noida, India
+Role: Frontend Developer
+Experience: 2-5 Years
+Employment Type: Full Time
+Salary: ₹16 LPA - ₹26 LPA
+
+Job Description:
+Build high-performance React applications and reusable UI components.
+
+Required Skills:
+- React
+- Redux
+- JavaScript
+- HTML
+- CSS
+- Tailwind CSS
+
+Preferred Skills:
+- Next.js
+- GraphQL
+- Cypress
+
+--------------------------------------------------------------------------------
+
+================================================================================
+Job ID: JOB-005
+================================================================================
+
+Company: Flipkart
+Location: Bangalore, India
+Role: Data Engineer
+Experience: 3-5 Years
+Employment Type: Full Time
+Salary: ₹19 LPA - ₹28 LPA
+
+Job Description:
+Build ETL pipelines, process large datasets, and optimize Spark workloads.
+
+Required Skills:
+- Python
+- SQL
+- Spark
+- Hadoop
+- Airflow
+
+Preferred Skills:
+- Kafka
+- AWS EMR
+- Redshift

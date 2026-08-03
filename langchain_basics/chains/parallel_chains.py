@@ -1,4 +1,9 @@
-from groq_llm import llm
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from llm.groq_llm import llm
 from langchain_core import output_parsers
 from langchain_core.prompts import PromptTemplate
 from langchain_core.globals import set_debug

@@ -1,5 +1,10 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from dotenv import load_dotenv
-from groq_llm import generateResponse, llm
+from llm.groq_llm import generateResponse, llm
 import streamlit as st
 from langchain_core.prompts import PromptTemplate
 from langchain_core.globals import set_debug

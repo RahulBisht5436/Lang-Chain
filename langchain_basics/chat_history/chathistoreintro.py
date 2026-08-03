@@ -1,7 +1,12 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
 
-from ollama_llm import llm
+from llm.ollama_llm import llm
 
 prompt_template = ChatPromptTemplate(
     [

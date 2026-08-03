@@ -1,10 +1,15 @@
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import streamlit as st
 
 # ChatPromptTemplate -> Used for chat models (ChatOllama, ChatOpenAI, etc.)
 # MessagesPlaceholder -> Placeholder where previous conversation history will be injected
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-from ollama_llm import llm
+from llm.ollama_llm import llm
 
 # StreamlitChatMessageHistory
 # Stores the chat history inside Streamlit's session state.

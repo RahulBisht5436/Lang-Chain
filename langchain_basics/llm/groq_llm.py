@@ -1,7 +1,10 @@
+from pathlib import Path
+
 from dotenv import load_dotenv
 from langchain_groq import ChatGroq
 
-load_dotenv()
+# Load .env from langchain_basics/ regardless of where the app is run from
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 llm = ChatGroq(
     model="llama-3.3-70b-versatile",

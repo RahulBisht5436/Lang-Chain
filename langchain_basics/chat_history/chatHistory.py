@@ -1,9 +1,15 @@
+import sys
+from pathlib import Path
+
+# Allow imports from langchain_basics/ (sibling folders like llm/)
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 # Import ChatPromptTemplate to create chat-based prompts
 # and MessagesPlaceholder to inject previous conversation history.
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 # Import the LLM (Ollama model)
-from ollama_llm import llm
+from llm.ollama_llm import llm
 
 # ChatMessageHistory stores all previous Human and AI messages.
 from langchain_community.chat_message_histories.in_memory import ChatMessageHistory
