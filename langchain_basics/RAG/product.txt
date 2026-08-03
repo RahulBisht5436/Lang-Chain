@@ -1,0 +1,334 @@
+=========================================================
+TechWorld Product Catalog
+=========================================================
+
+Product ID: P1001
+Product Name: Apple iPhone 15
+Category: Smartphone
+Brand: Apple
+
+Description:
+The Apple iPhone 15 features a 6.1-inch Super Retina XDR OLED display powered by the A16 Bionic chip. It offers excellent camera performance with a 48MP main camera and supports Dynamic Island.
+
+Specifications:
+- Display: 6.1-inch OLED
+- Processor: Apple A16 Bionic
+- RAM: 6GB
+- Storage: 128GB
+- Battery: 3349mAh
+- Camera: 48MP + 12MP
+- Front Camera: 12MP
+- Operating System: iOS 17
+
+Price: $799
+
+Features:
+- Face ID
+- MagSafe Charging
+- Water Resistant IP68
+- Wireless Charging
+- 5G Support
+
+Warranty:
+1 Year Manufacturer Warranty
+
+---------------------------------------------------------
+
+Product ID: P1002
+Product Name: Samsung Galaxy S24
+Category: Smartphone
+Brand: Samsung
+
+Description:
+Samsung Galaxy S24 is powered by Snapdragon 8 Gen 3 with Galaxy AI features.
+
+Specifications:
+- Display: 6.2-inch AMOLED
+- Processor: Snapdragon 8 Gen 3
+- RAM: 8GB
+- Storage: 256GB
+- Battery: 4000mAh
+- Camera: 50MP + 12MP + 10MP
+
+Price: $899
+
+Features:
+- Galaxy AI
+- Fast Charging
+- Wireless Charging
+- IP68 Rating
+- Gorilla Glass Victus 2
+
+Warranty:
+1 Year Manufacturer Warranty
+
+---------------------------------------------------------
+
+Product ID: P1003
+Product Name: Dell XPS 15
+Category: Laptop
+Brand: Dell
+
+Description:
+Premium laptop designed for professionals with Intel Core Ultra processor.
+
+Specifications:
+- Display: 15.6-inch OLED
+- CPU: Intel Core Ultra 7
+- RAM: 32GB DDR5
+- SSD: 1TB NVMe
+- GPU: NVIDIA RTX 4060
+
+Price: $1899
+
+Features:
+- Fingerprint Reader
+- Thunderbolt 4
+- WiFi 6E
+- Backlit Keyboard
+
+Warranty:
+2 Years On-site Warranty
+
+---------------------------------------------------------
+
+Product ID: P1004
+Product Name: MacBook Air M3
+Category: Laptop
+Brand: Apple
+
+Description:
+Ultra-light laptop powered by Apple's M3 chip.
+
+Specifications:
+- Display: 13.6-inch Liquid Retina
+- CPU: Apple M3
+- RAM: 16GB
+- SSD: 512GB
+- Battery: Up to 18 Hours
+
+Price: $1499
+
+Features:
+- Touch ID
+- MagSafe
+- Silent Fanless Design
+- WiFi 6E
+
+Warranty:
+1 Year Apple Warranty
+
+---------------------------------------------------------
+
+Product ID: P1005
+Product Name: Sony WH-1000XM5
+Category: Headphones
+Brand: Sony
+
+Description:
+Industry-leading wireless noise-cancelling headphones.
+
+Specifications:
+- Driver: 30mm
+- Battery: 30 Hours
+- Bluetooth: 5.3
+- Weight: 250g
+
+Price: $399
+
+Features:
+- ANC
+- Multipoint Connection
+- Quick Charge
+- Voice Assistant Support
+
+Warranty:
+1 Year
+
+---------------------------------------------------------
+
+Product ID: P1006
+Product Name: Logitech MX Master 3S
+Category: Mouse
+Brand: Logitech
+
+Description:
+Professional wireless productivity mouse.
+
+Specifications:
+- DPI: 8000
+- Connectivity: Bluetooth + USB Receiver
+- Battery: 70 Days
+
+Price: $99
+
+Features:
+- Silent Click
+- USB-C Charging
+- Multi-device Support
+- MagSpeed Scroll
+
+Warranty:
+2 Years
+
+---------------------------------------------------------
+
+Product ID: P1007
+Product Name: LG UltraGear 27GR95QE
+Category: Monitor
+Brand: LG
+
+Description:
+27-inch OLED gaming monitor with ultra-fast refresh rate.
+
+Specifications:
+- Resolution: 2560 x 1440
+- Refresh Rate: 240Hz
+- Response Time: 0.03ms
+- Panel: OLED
+
+Price: $899
+
+Features:
+- HDR10
+- NVIDIA G-SYNC
+- AMD FreeSync Premium
+- HDMI 2.1
+
+Warranty:
+3 Years
+
+---------------------------------------------------------
+
+Product ID: P1008
+Product Name: Apple Watch Series 9
+Category: Smartwatch
+Brand: Apple
+
+Description:
+Advanced smartwatch with health monitoring and fitness tracking.
+
+Specifications:
+- Display: Always-On Retina
+- Chip: Apple S9
+- Battery: 18 Hours
+
+Price: $399
+
+Features:
+- ECG
+- Blood Oxygen Monitoring
+- GPS
+- Siri
+- Fall Detection
+
+Warranty:
+1 Year
+
+---------------------------------------------------------
+
+Product ID: P1009
+Product Name: Canon EOS R8
+Category: Camera
+Brand: Canon
+
+Description:
+Full-frame mirrorless camera for photography and video creators.
+
+Specifications:
+- Sensor: 24.2MP Full Frame
+- Video: 4K60
+- Autofocus: Dual Pixel CMOS AF II
+
+Price: $1499
+
+Features:
+- Eye Detection AF
+- WiFi
+- Bluetooth
+- RAW Support
+
+Warranty:
+2 Years
+
+---------------------------------------------------------
+
+Product ID: P1010
+Product Name: Amazon Kindle Paperwhite
+Category: E-Reader
+Brand: Amazon
+
+Description:
+Portable e-reader with glare-free display.
+
+Specifications:
+- Display: 6.8-inch
+- Storage: 16GB
+- Battery: Up to 10 Weeks
+
+Price: $169
+
+Features:
+- Waterproof
+- Adjustable Warm Light
+- USB-C Charging
+
+Warranty:
+1 Year
+
+=========================================================
+Frequently Asked Questions
+=========================================================
+
+Q: Which laptop has the longest battery life?
+A: MacBook Air M3 offers up to 18 hours.
+
+Q: Which phone has the best camera?
+A: iPhone 15 has a 48MP primary camera, while Galaxy S24 includes a versatile triple-camera system.
+
+Q: Which monitor supports 240Hz?
+A: LG UltraGear 27GR95QE.
+
+Q: Which device supports Galaxy AI?
+A: Samsung Galaxy S24.
+
+Q: Which products have wireless charging?
+A:
+- iPhone 15
+- Samsung Galaxy S24
+
+Q: Which products have OLED displays?
+A:
+- iPhone 15
+- Dell XPS 15
+- LG UltraGear 27GR95QE
+
+=========================================================
+Store Policies
+=========================================================
+
+Shipping:
+Orders are dispatched within 24 hours.
+Standard delivery takes 3-5 business days.
+
+Return Policy:
+Products can be returned within 30 days if unused and in original packaging.
+
+Replacement Policy:
+Defective products can be replaced within 7 days.
+
+Payment Methods:
+- Visa
+- MasterCard
+- American Express
+- PayPal
+- UPI
+- Net Banking
+
+Customer Support:
+Email: support@techworld.com
+Phone: +1-800-555-1234
+
+Working Hours:
+Monday to Saturday
+9:00 AM - 7:00 PM
