@@ -1,79 +1,89 @@
-from llm.openAI_llm import llm
-from langchain_core.prompts import ChatPromptTemplate
-
+import streamlit as st
 import base64
-import os
+from langchain_core.prompts import ChatPromptTemplate
+from llm.openAI_llm import llm
 
 
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-IMAGE_PATH = os.path.join(CURRENT_DIR, "image_analy.jpg")
-
-
-def encode_image(image_path: str) -> str:
-    """Convert image to Base64."""
-    if not os.path.exists(image_path):
-        raise FileNotFoundError(f"Image not found: {image_path}")
-
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
-
-
-try:
-    image = encode_image(IMAGE_PATH)
-except Exception as e:
-    print(f"❌ Error loading image:\n{e}")
-    exit()
-
-
-prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", "You are a helpful assistant that analyzes images."),
-        (
-            "human",
-            [
-                {
-                    "type": "text",
-                    "text": "{input}",
-                },
-                {
-                    "type": "image_url",
-                    "image_url": {
-                        "url": f"data:image/jpeg;base64,{image}",
-                        "detail": "high",  # low | high | auto
-                    },
-                },
-            ],
-        ),
-    ]
+st.set_page_config(
+    page_title="Image Analyzer",
+    page_icon="🖼️",
+    layout="centered",
 )
 
-chain = prompt | llm
+st.title("🖼️ Image Analyzer")
+st.write("Upload an image and ask questions about it.")
 
-print("=" * 60)
-print("🖼️ Image Analyzer")
-print("Type 'exit' to quit.")
-print("=" * 60)
 
-while True:
+def encode_image(uploaded_file) -> str:
+    """Convert uploaded image to Base64."""
+    return base64.b64encode(uploaded_file.getvalue()).decode("utf-8")
 
-    question = input("\nAsk a question: ").strip()
 
-    if question.lower() in ("exit", "quit"):
-        print("\n👋 Goodbye!")
-        break
+uploaded_file = st.file_uploader(
+    "Upload an image",
+    type=["jpg", "jpeg", "png"],
+)
 
-    if not question:
-        print("⚠️ Please enter a question.")
-        continue
+if uploaded_file:
 
-    try:
-        response = chain.invoke({"input": question})
+    st.image(uploaded_file, caption="Uploaded Image", use_container_width=True)
 
-        print("\n" + "=" * 60)
-        print("🤖 Response:")
-        print("-" * 60)
-        print(response.content)
-        print("=" * 60)
+    question = st.text_input(
+        "Ask a question about the image",
+        placeholder="Example: Describe this image",
+    )
 
-    except Exception as e:
-        print(f"\n❌ Error while calling the model:\n{e}")
+    if st.button("Analyze Image"):
+
+        if not question.strip():
+            st.warning("Please enter a question.")
+            st.stop()
+
+        image = encode_image(uploaded_file)
+
+        prompt = ChatPromptTemplate.from_messages(
+            [
+                (
+                    "system",
+                    "You are a helpful assistant that analyzes images.",
+                ),
+                (
+                    "human",
+                    [
+                        {
+                            "type": "text",
+                            "text": "{input}",
+                        },
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{image}",
+                                "detail": "high",
+                            },
+                        },
+                    ],
+                ),
+            ]
+        )
+
+        chain = prompt | llm
+
+        with st.spinner("Analyzing image..."):
+
+            try:
+                response = chain.invoke(
+                    {
+                        "input": question,
+                    }
+                )
+
+                st.success("Analysis Complete")
+
+                st.subheader("🤖 Response")
+                st.write(response.content)
+
+            except Exception as e:
+                st.error(f"Error: {e}")
+
+else:
+    st.info("Upload an image to begin.")
