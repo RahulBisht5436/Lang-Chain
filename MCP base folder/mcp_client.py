@@ -1,14 +1,20 @@
 import asyncio
 import streamlit as st
 
-from langchain_openai import ChatOpenAI
+from llm.openAI_llm import llm
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langchain.agents import create_agent
 
 
-tools = None
+client = MultiServerMCPClient({
+    "tools":{
+        "url":"http://localhost:8000/mcp",
+        "transport":"streamable_http"
+    }
+})
 
-llm = ChatOpenAI(model="gpt-4o")
+tools = asyncio.run(client.get_tools())
+
 agent = create_agent(llm, tools)
 
 st.title("AI Agent (MCP Version)")

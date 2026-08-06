@@ -4,4 +4,4 @@ langchain-openai
 langchain-mcp-adapters
 wikipedia
 duckduckgo-search
-langraph
+langgraph
