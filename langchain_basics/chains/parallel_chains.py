@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+from IPython.display import Image, display
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -431,8 +432,16 @@ NoteData = (chain.invoke(
         "textInfo":textInformation
     }
 ))
+print("==========================================>>>>")
+png = chain.get_graph().draw_mermaid_png()
+
+with open("pipeline.png", "wb") as f:
+    f.write(png)
+
+print("Pipeline saved as pipeline.png")
+print("==========================================>>>>")
 print("These are NOTES  \n ========================================>>>>>> ")
-print(NoteData)
+# print(NoteData)
 
 
 chainQuiz = quiz_maker_mode | llm | StrOutputParser()
@@ -440,4 +449,4 @@ QuizData = chainQuiz.invoke({
     "rawData" : NoteData
 })
 
-print(QuizData)
+# print(QuizData)
