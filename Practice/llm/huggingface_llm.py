@@ -33,7 +33,7 @@ llm = HuggingFaceEndpoint(
 # chat-style methods such as invoke(), stream(), and batch().
 chat = ChatHuggingFace(llm=llm)
 
-
+chat.get_graph().print_ascii()
 # -------------------------------------------------------------------
 # Program entry point
 # -------------------------------------------------------------------
