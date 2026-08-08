@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import TypedDict ,Annotated ,Optional , Literal
 from enum import Enum
 
 
@@ -11,7 +11,7 @@ class Sentiment(str, Enum):
 class ReviewAnalysis(TypedDict):
     review: str
     sentiment: Sentiment
-    emotion: str
+    emotion: Annotated[str,"Tel the sentiment of the user , what it feels from the review"]
     complaint: str
 
 
