@@ -1,0 +1,11 @@
+id,name,email,role,salary
+1,Rahul,rahul@example.com,Software Engineer,75000
+2,Priya,priya@example.com,Data Analyst,65000
+3,Amit,amit@example.com,Backend Developer,72000
+4,Neha,neha@example.com,Frontend Developer,68000
+5,Vikas,vikas@example.com,DevOps Engineer,80000
+6,Anjali,anjali@example.com,QA Engineer,60000
+7,Rohit,rohit@example.com,Product Manager,85000
+8,Sneha,sneha@example.com,UI/UX Designer,62000
+9,Karan,karan@example.com,Python Developer,71000
+10,Pooja,pooja@example.com,HR Manager,70000
