@@ -1,0 +1,121 @@
+TechNova Solutions
+
+Company Overview
+----------------
+TechNova Solutions is a fictional software development company founded in 2018.
+The company provides web development, mobile application development, cloud
+solutions, artificial intelligence, and data engineering services.
+
+Headquarters
+------------
+Bangalore, Karnataka, India
+
+Company Size
+------------
+Employees: 250
+Founded: 2018
+Industry: Information Technology
+
+Departments
+-----------
+1. Engineering
+2. Product Management
+3. Human Resources
+4. Sales
+5. Marketing
+6. Finance
+7. Customer Support
+
+Products and Services
+---------------------
+TechNova Solutions provides the following services:
+
+1. Web Development
+   The company develops scalable web applications using React, Next.js,
+   Node.js, Python, and other modern technologies.
+
+2. Mobile Development
+   The company develops Android and iOS applications using React Native
+   and native mobile technologies.
+
+3. Cloud Solutions
+   TechNova provides cloud infrastructure and deployment solutions using
+   AWS, Azure, and Google Cloud.
+
+4. Artificial Intelligence
+   The AI team develops applications using Large Language Models,
+   Retrieval-Augmented Generation (RAG), machine learning, and natural
+   language processing.
+
+5. Data Engineering
+   The company builds data pipelines, data warehouses, and analytics
+   platforms for enterprise customers.
+
+Employee Information
+--------------------
+CEO: Arjun Mehta
+CTO: Priya Sharma
+Head of Engineering: Rahul Kapoor
+HR Manager: Neha Verma
+
+Working Hours
+-------------
+Monday to Friday
+9:00 AM to 6:00 PM
+
+Leave Policy
+------------
+Employees receive 24 paid leaves per year.
+Employees can apply for leave through the internal HR portal.
+Sick leave and emergency leave must be communicated to the reporting
+manager as soon as possible.
+
+Remote Work Policy
+------------------
+Employees can work remotely up to two days per week.
+Remote work must be approved by the employee's manager.
+
+Technology Stack
+----------------
+Frontend:
+- React
+- Next.js
+- TypeScript
+- Tailwind CSS
+
+Backend:
+- Node.js
+- Express
+- Python
+- FastAPI
+
+Databases:
+- PostgreSQL
+- MongoDB
+- Redis
+- Cassandra
+
+Cloud:
+- AWS
+- Docker
+- Kubernetes
+
+AI:
+- OpenAI
+- LangChain
+- Vector Databases
+- RAG
+
+Contact Information
+-------------------
+Email: contact@technovasolutions.example
+Phone: +91-80-4000-1234
+Website: https://technovasolutions.example
+
+Company Values
+--------------
+1. Innovation
+2. Customer First
+3. Transparency
+4. Continuous Learning
+5. Teamwork
