@@ -30,7 +30,7 @@ def PDFLoader(fileName: str):
 
     # Create a PDF loader for the specified file
     loader = PyPDFLoader(str(file_path))
-
+    print(file_path,"File Path from the PyPDF Laoder===========================>>>>")
     # Load the PDF and extract its content.
     # PyPDFLoader returns a list of Document objects,
     # usually one Document object per PDF page.
