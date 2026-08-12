@@ -9,12 +9,11 @@ from langchain_core.output_parsers import StrOutputParser
 
 current_dir = Path(__file__).resolve().parents[1]
 
+dotenv.load_dotenv(current_dir / ".env")
+
 sys.path.insert(0, str(current_dir))
 
 from llm.openAI_llm import llm
-
-
-dotenv.load_dotenv()
 
 SEARXNG_URL = os.getenv("SEARXNG_URL")
 
