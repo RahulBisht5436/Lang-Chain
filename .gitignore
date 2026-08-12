@@ -1,60 +1,106 @@
-# Virtual environment (project scripts live in langchain_basics/)
-langchain_basics/Include/
-langchain_basics/Lib/
-langchain_basics/Scripts/
-langchain_basics/pyvenv.cfg
-langchain_basics/__pycache__/
+    # ============================================================
+    # Python Virtual Environments
+    # ============================================================
 
-# Secrets — never commit
-.env
-**/.env
+    venv/
+    .venv/
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
-.venv/
-venv/
+    # Project-specific virtual environment
+    langchain_basics/Include/
+    langchain_basics/Lib/
+    langchain_basics/Scripts/
+    langchain_basics/pyvenv.cfg
 
-# IDE / OS
-.idea/
-.vscode/
-.DS_Store
-Thumbs.db
-# Node.js
-node_modules/
-**/node_modules/
+    # Python cache / compiled files
+    __pycache__/
+    **/__pycache__/
+    *.py[cod]
+    *$py.class
+    *.egg-info/
 
-# Package manager logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
 
-# Environment files
-.env
-**/.env
+    # ============================================================
+    # Secrets / Environment
+    # ============================================================
 
-# Python virtual environments
-.venv/
-venv/
-langchain_basics/Include/
-langchain_basics/Lib/
-langchain_basics/Scripts/
-langchain_basics/pyvenv.cfg
+    .env
+    **/.env
+    .env.*
+    !.env.example
 
-# Python
-__pycache__/
-**/__pycache__/
-*.py[cod]
-*$py.class
-*.egg-info/
 
-# IDE
-.vscode/
-.idea/
+    # ============================================================
+    # IDE / Editor
+    # ============================================================
 
-# OS
-.DS_Store
-Thumbs.db
+    .vscode/
+    .idea/
+
+
+    # ============================================================
+    # OS
+    # ============================================================
+
+    .DS_Store
+    Thumbs.db
+
+
+    # ============================================================
+    # Node.js
+    # ============================================================
+
+    node_modules/
+    **/node_modules/
+
+    npm-debug.log*
+    yarn-debug.log*
+    yarn-error.log*
+    pnpm-debug.log*
+
+
+    # ============================================================
+    # SearXNG
+    # ============================================================
+    #
+    # We are using SearXNG as a Docker service.
+    # Keep only our Docker configuration.
+    #
+    # Do NOT commit the cloned SearXNG source code.
+
+    searxng-docker/searx/
+    searxng-docker/tests/
+    searxng-docker/utils/
+    searxng-docker/searxng_extra/
+    searxng-docker/docs/
+    searxng-docker/client/
+    searxng-docker/container/.devcontainer/
+    searxng-docker/container/.vscode/
+
+    # SearXNG repository development files
+    searxng-docker/.github/
+    searxng-docker/.helix/
+    searxng-docker/.git/
+    searxng-docker/.gitignore
+
+    # SearXNG development/build files
+    searxng-docker/*.py
+    searxng-docker/*.toml
+    searxng-docker/*.lock
+    searxng-docker/*.md
+    searxng-docker/LICENSE
+    searxng-docker/Makefile
+    searxng-docker/Dockerfile
+
+
+    # ============================================================
+# SearXNG
+# ============================================================
+
+# Ignore everything from the cloned SearXNG repository
+/searxng-docker/*
+
+# Keep only our Docker setup
+!/searxng-docker/container/
+!/searxng-docker/container/docker-compose.yml
+!/searxng-docker/container/core-config/
+!/searxng-docker/container/core-config/settings.yml
