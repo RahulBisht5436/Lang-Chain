@@ -34,6 +34,7 @@ from langchain_core.documents import Document
 wiki = wikipediaapi.Wikipedia(
     user_agent="LangChainPractice/1.0 (your-email@example.com)",
     language="en"
+    
 )
 
 
