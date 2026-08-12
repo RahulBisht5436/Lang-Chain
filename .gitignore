@@ -1,106 +1,100 @@
-    # ============================================================
-    # Python Virtual Environments
-    # ============================================================
+# Virtual environment (project scripts live in langchain_basics/)
+langchain_basics/Include/
+langchain_basics/Lib/
+langchain_basics/Scripts/
+langchain_basics/pyvenv.cfg
+langchain_basics/__pycache__/
 
-    venv/
-    .venv/
+# Secrets — never commit
+.env
+**/.env
 
-    # Project-specific virtual environment
-    langchain_basics/Include/
-    langchain_basics/Lib/
-    langchain_basics/Scripts/
-    langchain_basics/pyvenv.cfg
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
 
-    # Python cache / compiled files
-    __pycache__/
-    **/__pycache__/
-    *.py[cod]
-    *$py.class
-    *.egg-info/
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+# Node.js
+node_modules/
+**/node_modules/
 
+# Package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-    # ============================================================
-    # Secrets / Environment
-    # ============================================================
+# Environment files
+.env
+**/.env
 
-    .env
-    **/.env
-    .env.*
-    !.env.example
+# Python virtual environments
+.venv/
+venv/
+langchain_basics/Include/
+langchain_basics/Lib/
+langchain_basics/Scripts/
+langchain_basics/pyvenv.cfg
 
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
 
-    # ============================================================
-    # IDE / Editor
-    # ============================================================
+# IDE
+.vscode/
+.idea/
 
-    .vscode/
-    .idea/
+# OS
+.DS_Store
+Thumbs.db
 
+# SearXNG Docker (Practice/searxng-docker)
+#
+# Using SearXNG as a Docker service — keep only our Docker configuration.
+# Do NOT commit the cloned SearXNG upstream source code.
 
-    # ============================================================
-    # OS
-    # ============================================================
-
-    .DS_Store
-    Thumbs.db
-
-
-    # ============================================================
-    # Node.js
-    # ============================================================
-
-    node_modules/
-    **/node_modules/
-
-    npm-debug.log*
-    yarn-debug.log*
-    yarn-error.log*
-    pnpm-debug.log*
-
-
-    # ============================================================
-    # SearXNG
-    # ============================================================
-    #
-    # We are using SearXNG as a Docker service.
-    # Keep only our Docker configuration.
-    #
-    # Do NOT commit the cloned SearXNG source code.
-
-    searxng-docker/searx/
-    searxng-docker/tests/
-    searxng-docker/utils/
-    searxng-docker/searxng_extra/
-    searxng-docker/docs/
-    searxng-docker/client/
-    searxng-docker/container/.devcontainer/
-    searxng-docker/container/.vscode/
-
-    # SearXNG repository development files
-    searxng-docker/.github/
-    searxng-docker/.helix/
-    searxng-docker/.git/
-    searxng-docker/.gitignore
-
-    # SearXNG development/build files
-    searxng-docker/*.py
-    searxng-docker/*.toml
-    searxng-docker/*.lock
-    searxng-docker/*.md
-    searxng-docker/LICENSE
-    searxng-docker/Makefile
-    searxng-docker/Dockerfile
-
-
-    # ============================================================
-# SearXNG
-# ============================================================
-
-# Ignore everything from the cloned SearXNG repository
-/searxng-docker/*
+Practice/searxng-docker/**
 
 # Keep only our Docker setup
-!/searxng-docker/container/
-!/searxng-docker/container/docker-compose.yml
-!/searxng-docker/container/core-config/
-!/searxng-docker/container/core-config/settings.yml
+!Practice/searxng-docker/container/
+Practice/searxng-docker/container/**
+!Practice/searxng-docker/container/docker-compose.yml
+!Practice/searxng-docker/container/core-config/
+Practice/searxng-docker/container/core-config/**
+!Practice/searxng-docker/container/core-config/settings.yml
+
+# Upstream repo git metadata
+Practice/searxng-docker/.git/
+Practice/searxng-docker/.github/
+Practice/searxng-docker/.gitignore
+Practice/searxng-docker/.gitattributes
+
+# Upstream .gitignore patterns (from Practice/searxng-docker/.gitignore)
+Practice/searxng-docker/**/*.pyc
+Practice/searxng-docker/**/*~
+Practice/searxng-docker/**/*.swp
+Practice/searxng-docker/**/geckodriver.log
+Practice/searxng-docker/**/.coverage
+Practice/searxng-docker/**/coverage/
+Practice/searxng-docker/**/.govm/
+Practice/searxng-docker/**/.nvm/
+Practice/searxng-docker/**/cache/
+Practice/searxng-docker/**/build/
+Practice/searxng-docker/**/dist/
+Practice/searxng-docker/**/local/
+Practice/searxng-docker/**/gh-pages/
+Practice/searxng-docker/**/searx/version_frozen.py
+Practice/searxng-docker/**/.dir-locals.el
+Practice/searxng-docker/**/.python-version
+
