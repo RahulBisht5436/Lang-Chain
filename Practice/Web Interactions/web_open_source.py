@@ -22,21 +22,21 @@ if not SEARXNG_URL:
 
 prompt = PromptTemplate(
     template="""
-You are a helpful AI assistant.
+                    You are a helpful AI assistant.
 
-Answer the user's question using ONLY the web
-search results provided below.
+                    Answer the user's question using ONLY the web
+                    search results provided below.
 
-If the search results do not contain enough
-information, say that you don't have enough
-information.
+                    If the search results do not contain enough
+                    information, say that you don't have enough
+                    information.
 
-User Question:
-{Topic}
+                    User Question:
+                    {Topic}
 
-Web Search Results:
-{web_results}
-""",
+                    Web Search Results:
+                    {web_results}
+             """,
     input_variables=["Topic", "web_results"]
 )
 
