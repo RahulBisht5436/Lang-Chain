@@ -1,0 +1,3 @@
+[server]
+# Avoid Streamlit scanning transformers/torchvision modules in venv
+fileWatcherType = "none"
