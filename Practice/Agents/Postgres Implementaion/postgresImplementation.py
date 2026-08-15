@@ -1,125 +1,223 @@
-# Import Path for handling file/directory paths in a platform-independent way
+# Import Path for handling file and directory paths
+# in a platform-independent way.
 from pathlib import Path
 
-# Import sys so that we can modify Python's module search path
+# Import sys so that we can modify Python's module search path.
 import sys
 
+# Import the @tool decorator from LangChain.
+#
+# The @tool decorator converts our Python function into
+# a LangChain Tool that can be called by an LLM/agent.
+from langchain_community.tools import tool
+
+
+# -------------------------------------------------------------------
+# PROJECT PATH CONFIGURATION
+# -------------------------------------------------------------------
 
 # Get the project's root directory.
 #
-# __file__ -> current Python file
-# resolve() -> converts it to an absolute path
-# parents[2] -> moves two directories up from the current file
+# __file__
+#     -> Represents the current Python file.
+#
+# resolve()
+#     -> Converts the path into an absolute path.
+#
+# parents[2]
+#     -> Moves two directories up from the current file.
 current_dir = Path(__file__).resolve().parents[2]
+
 
 # Add the project root directory to Python's module search path.
 #
-# This allows us to import modules from our project, such as:
+# This allows us to import our own project modules, for example:
+#
 #     from llm.openAI_llm import llm
 #     from postgresIntiation import db
+#
+# without getting a ModuleNotFoundError.
 sys.path.insert(0, str(current_dir))
 
 
+# -------------------------------------------------------------------
+# LANGCHAIN IMPORTS
+# -------------------------------------------------------------------
+
 # PromptTemplate is used to create a reusable prompt
-# with placeholders such as {query} and {schema}
+# containing dynamic variables such as:
+#
+#     {query}
+#     {schema}
 from langchain_core.prompts import PromptTemplate
 
-# Import the LLM instance that we configured in our project
+
+# Import the LLM instance configured in our project.
+#
+# This LLM will be responsible for converting the user's
+# natural-language request into a PostgreSQL SQL query.
 from llm.openAI_llm import llm
 
-# Import the PostgreSQL database connection
+
+# Import the PostgreSQL database connection.
+#
+# We use this connection to retrieve the schema of the
+# students table.
 from postgresIntiation import db
 
-# StrOutputParser converts the LLM's output into a plain Python string
+
+# StrOutputParser converts the LLM's response into
+# a normal Python string.
+#
+# Without this parser, the LLM may return an AIMessage object.
 from langchain_core.output_parsers import StrOutputParser
 
 
-# Get information about the "students" table from PostgreSQL.
+# -------------------------------------------------------------------
+# DATABASE SCHEMA
+# -------------------------------------------------------------------
+
+# Retrieve the schema information of the "students" table.
 #
-# This generally contains information such as:
+# The schema can contain information such as:
+#
 # - Column names
 # - Data types
+# - Primary keys
 # - Constraints
 # - Other table metadata
 #
-# We will provide this schema information to the LLM so that
-# it can generate SQL queries based on the actual database structure.
+# This schema will be provided to the LLM so that it knows
+# which columns are available when generating the SQL query.
 schema = db.get_table_info(["students"])
 
 
-# Create a prompt template for converting natural-language questions
-# into PostgreSQL SQL queries.
+# -------------------------------------------------------------------
+# PROMPT TEMPLATE
+# -------------------------------------------------------------------
+
+# Create a prompt template that converts a user's
+# natural-language request into a PostgreSQL SQL query.
 #
-# {query}  -> User's question
-# {schema} -> Database schema
+# {query}
+#     -> The request provided by the user/LLM.
+#
+# {schema}
+#     -> The database schema that the LLM should use
+#        while generating the SQL query.
 promt = PromptTemplate(
     template="""
     Give Postgres SQL query for the implementation of
     {query}
 
     Only the read operation is allowed.
-    Block any UPDATE, DELETE, or INSERT query execution.
+
+    Do NOT generate:
+    - INSERT
+    - UPDATE
+    - DELETE
+    - DROP
+    - ALTER
+    - TRUNCATE
+
+    Only SELECT queries are allowed.
 
     The schema of the table is:
     {schema}
+
+    Output Format:
+    SELECT * FROM students;
+
+    Nothing else.
+    Return only the SQL query.
     """,
 
-    # These are the variables that will be replaced when
+    # These variables will be replaced when
     # chain.invoke() is called.
     input_variables=["query", "schema"]
 )
 
 
+# -------------------------------------------------------------------
+# OUTPUT PARSER
+# -------------------------------------------------------------------
+
 # Create an output parser.
 #
-# The LLM normally returns an AIMessage object.
-# StrOutputParser extracts the actual text content from it.
+# The LLM generally returns an AIMessage.
+# StrOutputParser extracts only the text content
+# from the LLM response.
 parser = StrOutputParser()
 
 
-# Create a LangChain chain using the pipe operator.
+# -------------------------------------------------------------------
+# LANGCHAIN CHAIN
+# -------------------------------------------------------------------
+
+# Create the LangChain processing chain.
+#
+# The pipe operator "|" connects each component.
 #
 # Flow:
 #
 # User Query
-#     ↓
+#      ↓
 # PromptTemplate
-#     ↓
+#      ↓
 # LLM
-#     ↓
+#      ↓
 # StrOutputParser
-#     ↓
-# SQL query as a string
+#      ↓
+# SQL Query String
 #
 chain = promt | llm | parser
 
 
-# Take a question from the user through the terminal.
+# -------------------------------------------------------------------
+# SQL GENERATION TOOL
+# -------------------------------------------------------------------
+
+# Convert the Python function into a LangChain Tool.
 #
-# Example:
-# "Show me all students whose CGPA is greater than 8"
-query = input("How may I help you? ")
+# Once decorated with @tool, this function can be provided
+# to an LLM/agent as a callable tool.
+@tool
+def getSQLQuery(query: str) -> str:
+    """
+    Generate a read-only PostgreSQL SQL query from a
+    natural-language request.
 
+    The tool uses the students table schema to generate
+    a valid SQL query.
 
-# Check whether the user entered something.
-#
-# An empty string evaluates to False.
-if query:
+    Only SELECT/read operations are allowed.
+    INSERT, UPDATE, DELETE, DROP, ALTER, and TRUNCATE
+    operations must not be generated.
 
-    # Send the user's question and database schema to the chain.
+    Args:
+        query: Natural-language request describing the
+               data the user wants to retrieve.
+
+    Returns:
+        A PostgreSQL SELECT query as a string.
+    """
+
+    # Send the user's request and database schema
+    # to the LangChain chain.
     #
-    # The values replace:
-    #     {query}  -> user's question
-    #     {schema} -> PostgreSQL table schema
-    #
-    # The chain then:
-    # 1. Builds the prompt
-    # 2. Sends it to the LLM
-    # 3. Parses the LLM response into a string
+    # "query"  -> User's natural-language request.
+    # "schema" -> PostgreSQL students table schema.
     queryString = chain.invoke({
         "query": query,
         "schema": schema
     })
 
-    # Print the generated SQL query.
-    print(queryString)
+    # Return the generated SQL query.
+    return queryString
+
+
+@tool
+def runQuery(query):
+    """ This Tool is used to return the Database after executing the {query} operation """
+    results = db.run(query)
+    return results
